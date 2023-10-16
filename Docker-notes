@@ -12,3 +12,30 @@ sudo usermod -aG docker ubuntu
 sudo su - ubuntu    
 sudo docker ps    
  
+Docker Image: --> It's a package which contains
+                 everything (Libraries, Softwares+ENV+Application Code)
+                 needed to run your application.
+                 appCode + dependencies[Libraries, Softwares+ENV+]
+
+Docker containers: Run time instance of a docker image. 
+     If you execute: docker run, 
+     a container is created from the image 
+
+IQ: How many environment are you supporting in your CURRENT role??
+         Development environment    
+         Testing/QA environment    
+         Production environment 
+In docker applications run as containers
+
+docker build -t tesla:1 .  
+docker run --name tesla -d -p 8000:8080 tesla:1      
+
+ curl 35.92.218.3:8000/webapp     
+
+docker run --name containerName -d -p hostPort:containerPort image:tag 
+  -d = detachable mode  
+  -p = port Forwarding 
+
+docker run --name hello -d -p 80:80 mylandmarktech/hello 
+  curl 35.92.218.3:80  
+  docker ps 
