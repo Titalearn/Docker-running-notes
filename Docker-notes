@@ -39,3 +39,28 @@ docker run --name containerName -d -p hostPort:containerPort image:tag
 docker run --name hello -d -p 80:80 mylandmarktech/hello 
   curl 35.92.218.3:80  
   docker ps 
+
+
+DEploying AN Application With an Imageyou don't have
+====================================================
+docker run --name hello -d -p 80:80 mylandmarktech/hello 
+-we do not have these image
+-it is going to pull the image from an image registry
+-Curl the application on port 80 to make sure its runing
+e.g 34.92.218.3:80
+
+
+docker ps = These shows you application running
+docker images = This shows the images you have
+docker run = Deploys the application
+docker push = Its used to ship images to registries
+
+We can create Registry in Dockerhub,amazonEcr,Nexus,Jfrog
+In docker we can divide our environments to dev/prod/Uat
+we can build an image in the dev environment and push it to dockerhub.
+we pull the image from docker hub to the prod environment and use the image to deploy the application.
+
+DOCKER ENGINE
+==============
+Consist of docker Cli
+consist of docker Daemon
