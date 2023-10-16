@@ -49,11 +49,17 @@ docker run --name hello -d -p 80:80 mylandmarktech/hello
 -Curl the application on port 80 to make sure its runing
 e.g 34.92.218.3:80
 
+some docker commands
+=====================
 
 docker ps = These shows you application running
 docker images = This shows the images you have
 docker run = Deploys the application
 docker push = Its used to ship images to registries
+docker inspect = shows everything about your container 
+docker pull = this will pull and image from docker hub
+docker tag = tags an image before its pushed
+docker login = used for authentication
 
 We can create Registry in Dockerhub,amazonEcr,Nexus,Jfrog
 In docker we can divide our environments to dev/prod/Uat
@@ -64,3 +70,43 @@ DOCKER ENGINE
 ==============
 Consist of docker Cli
 consist of docker Daemon
+
+
+Take note for docker registry we have private and public dockerhub registery.
+Take note that each container has an ip-address allocated to it.
+Each container listens on a port.
+
+
+what is docker hub?
+=====================
+Docker Hub is the world's largest. library and community for container images. 
+https://hub.docker.com/
+create a docker hub acount
+The tags on the images also stands for the versions.
+You can choose any version
+e.g
+docker push lavetlearn/spring-boot-mongo:32
+docker tag tesla:1 mylandmarktech/maven-web-app:32
+docker push mylandmarktech/maven-web-app:32   
+
+docker tag tesla:1 mylandmarktech/tesla:1  
+
+
+How to push image to a private registry
+========================================
+docker login
+username
+and password needed.
+
+First you need to be authenticated before your able to push
+To push an image you must first tag the image before pushing.
+docker tag local-image:tagname new-repo:tagname
+docker push new-repo:tagname
+
+
+docker push mylandmarktech/tesla:1   
+
+
+
+
+
