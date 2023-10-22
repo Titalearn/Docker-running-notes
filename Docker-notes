@@ -163,6 +163,180 @@ docker pull mylandmarktech/wfapp:32
   docker pull jenkins/jenkins
 
 
+ /var/jenkins_home/secrets/initialAdminPassword
+
+  docker exec jk cat /var/jenkins_home/secrets/initialAdminPassword
+  docker exec jk cat /var/jenkins_home/secrets/initialAdminPassword    
+
+aws ecr private docker registry:
+===============================
+===================================
+Retrieve an authentication token and authenticate your Docker client to your registry.
+Use the AWS CLI:
+
+aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 287784533479.dkr.ecr.us-west-2.amazonaws.com
+
+sudo apt install awscli -y  
+ubuntu@docker:~/webapp$ aws configure
+   AWS Access Key ID [None]: AKUGAPXT2T6EMDPP
+   AWS Secret Access Key [None]: 5jWXIVCgYGRnKCS7BuoLRUuebQ1upHkoXOo2N
+   Default region name [None]: us-west-2
+   Default output format [None]: json
+
+
+Note: If you receive an error using the AWS CLI, make sure that you have the latest version of the AWS CLI and Docker installed.
+Build your Docker image using the following command. For information on building a Docker file from scratch see the instructions here . You can skip this step if your image is already built:
+
+docker build -t tesla .
+After the build completes, tag your image so you can push the image to this repository:
+
+docker tag mylandmarktech/wfapp:32 287784533479.dkr.ecr.us-west-2.amazonaws.com/tesla:latest
+docker tag mylandmarktech/wfapp:32 287784533479.dkr.ecr.us-west-2.amazonaws.com/tesla:1   
+
+Run the following command to push this image to your newly created AWS repository:
+
+docker push 287784533479.dkr.ecr.us-west-2.amazonaws.com/tesla:latest
+
+delete all images using:
+===========================
+docker images -q  = List image IDs  
+docker rmi $( docker images -q )   
+docker rmi -f $(docker images -q)  
+
+  docker build/pull/scan/push/inspect/rmi/prune/tag  
+
+
+docker build/ps/images     
+
+docker container coomands:
+============================
+docker ps    = List running containers  
+docker ps -a = List all containers [running and stopped] 
+docker ps -q   = List running containers IDs
+docker ps -aq  = List all containers IDs 
+docker stop containerName/ID  
+docker stop
+
+deploy applications using docker:\
+===================================
+docker create  and docker start   
+  or   
+docker run [pull images where applicable, create and start a container] 
+
+docker pull mylandmarktech/java-web-app  
+docker inspect mylandmarktech/java-web-app  
+docker run --name webapp -d -p 9000:8080 mylandmarktech/java-web-app:latest
+
+A servers has 2^16=65536ports [0,1,2,3...,65635]
+
+  netstat -tulpn  
+
+
+docker stop jk
+docker start webapp  
+docker ps -q     = list the ids of running containers  
+docker ps -a -q  = list the ids of all containers  
+
+what is the difference b/w  docker kill and  docker stop  
+docker kill  = stops containers without warning  
+docker stop  = stops a containers process with warning  
+
+======================
+
+List Running Containers
+=======================
+docker ps -a --filter  status="running" 
+docker ps 
+docker container ls
+
+List All Containers
+==================
+docker ps -a
+docker container ls -a
+
+List ONLY stopped Containers
+=================================
+docker ps -aq --filter  status="exited" 
+docker ps -a --filter  status="exited" 
+
+List only running container ids
+==============================
+docker ps -q
+docker container ls -q
+
+
+List all container ids
+==============================
+docker ps -aq
+docker container ls -aq
+
+deletes stopped containers 
+===========================
+docker rm containerName/ID   
+
+Force Delete a running container  
+===============-----------------
+docker rm -f containerName/ID 
+ docker rm -f $(docker ps -aq --filter  status="running") 
+
+Delete an exited/stopped container  
+===============-----------------
+docker rm containerName/ID  
+
+Delete all exited/stopped container
+====================================  
+docker rm -f $(docker ps -aq)
+
+
+Delete all excited/stopped Containers
+================================
+docker rm $(docker ps -aq --filter  status="exited")
+
+docker stop containerName/ID  
+docker start containerName/ID  
+docker pause containerName/ID  
+    http://52.87.183.168:3030/
+docker unpause containerName/ID  
+docker restart containerName/ID 
+---
+docker run --name webapp -d -p 9000:8080 mylandmarktech/java-web-app:latest
+
+A servers has 2^16=65536ports [0,1,2,3...,65635]
+
+  netstat -tulpn  
+
+Ticket0012 -  :
+ https://github.com/LandmakTechnology/python-flask-app
+  Deploy a pythonapp application using docker: 
+    1. use/Create/modify a Dockerfile   
+    2. Use the Dockerfile to build a docker image  
+    3. Push the image to an image registry[dockerhub/ecr/nexus/JFrog]
+    4. pull, inspect and scan the docker image
+    5. deploy the application using the image [docker run]  
+
+
+docker pull mylandmarktech/python-flask-app  
+
+Dockerfile:
+==========
+FROM python:3.7
+WORKDIR /opt/app
+COPY . .
+RUN pip install --no-cache-dir -r requirements-prod.txt
+EXPOSE 5000
+CMD ["python3", "-m", "flask", "run", "--host=0.0.0.0"] 
+
+----
+Ticket0013-
+  Deploy a nodeJS web application using docker: 
+    1. use/Create/modify a Dockerfile   
+    2. Use the Dockerfile to build a docker image  
+    3. Push the image to an image registry[dockerhub/ecr/nexus/JFrog]
+    4. pull, inspect and scan the docker image
+    5. deploy the application using the image  
+https://github.com/LandmakTechnology/nodejs-application
+Dockerfile_NodeJS 
+
 
 
 
