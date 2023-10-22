@@ -171,6 +171,15 @@ docker pull mylandmarktech/wfapp:32
 aws ecr private docker registry:
 ===============================
 ===================================
+Step 1
+-Go to aws
+-Search for  ECR
+-Choose name and create
+Click on push command you will see the steps on what to do in other to push
+
+STEPS BY STEPS ON HOW TO PUSH IMAGES TO AMAZON ECR
+====================================================
+Make sure aws cli is installed
 Retrieve an authentication token and authenticate your Docker client to your registry.
 Use the AWS CLI:
 
